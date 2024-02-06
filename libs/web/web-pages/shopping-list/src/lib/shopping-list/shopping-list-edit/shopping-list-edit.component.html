@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form action="">
+            <div class="row">
+
+                <div class="col-xs-5 form-group">
+                    <label for="name">Name</label>
+                    <!-- We can catch the value by using this feature: 
+                        1. setting a local refference on the input #newIngredientName 
+                        2. pass it to the method below
+                        3. we set an HTMLInputElement on ts file
+                        4. we only use this #newIngredientName on html -->
+                    <input type="text" id="ingredientName" class="form-control" #ingredientNameInput>
+                </div>
+
+                <div class="col-xs-2 form-group">
+                    <label for="amount">Amount</label>
+                    <!-- and here we catch the value with classic approach of ngModel -->
+                    <input type="number" id="ingredientAmount" class="form-control" #ingredientAmountInput>
+                </div>
+
+                <div class="col-xs-5 form-group">
+                    <label for="unit">Unit</label>
+                    <select id="unit" class="form-control" #selectedUnit>
+                        <option value="" disabled selected>Please select units</option>
+                        <option value="g">Grams</option>
+                        <option value="kg">Kilos</option>
+                        <option value="ml">Liters</option>
+                        <option value="l">Items</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-success" style="margin-right: 0.5rem;" type="submit"
+                        (click)="onAddingNewIngredient()">Add</button>
+                    <button class="btn btn-danger" style="margin-right: 0.5rem;" type="button">Delete</button>
+                    <button class="btn btn-primary" type="button" (click)="onClearingIngredients()">Clear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

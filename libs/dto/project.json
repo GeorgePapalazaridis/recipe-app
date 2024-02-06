@@ -1,0 +1,9 @@
+{
+  "name": "dto",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/dto/src",
+  "prefix": "recipe-app",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}

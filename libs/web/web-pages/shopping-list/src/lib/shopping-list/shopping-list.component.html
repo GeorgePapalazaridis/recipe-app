@@ -1,0 +1,22 @@
+<p>shopping-list works!</p>
+<div class="row">
+    <div class="col-xs-10">
+        <recipe-app-shopping-list-edit (ingredientAdded)="onAddedNewIngredients($event)">
+        </recipe-app-shopping-list-edit>
+
+        <hr>
+
+        <div>
+            <p *ngIf="ingredients && ingredients.length>0; else noIngredientsList">We are going to need:</p>
+            <ul class="list-group">
+                <a class="list-group-item" style="cursor: pointer;" *ngFor="let ingredient of ingredients">
+                    {{ingredient.ingredientName}}: {{ingredient.ingredientAmount}} {{ingredient.ingredientUnit}}
+                </a>
+            </ul>
+
+            <ng-template #noIngredientsList>
+                <p>There is no ingredients that we need at the moment..</p>
+            </ng-template>
+        </div>
+    </div>
+</div>

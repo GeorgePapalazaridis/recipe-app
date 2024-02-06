@@ -1,0 +1,9 @@
+{
+  "name": "web-web-pages-shopping-list",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/web-pages/shopping-list/src",
+  "prefix": "recipe-app",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}

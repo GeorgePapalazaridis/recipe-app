@@ -1,0 +1,9 @@
+{
+  "name": "web-web-pages-home",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/web-pages/home/src",
+  "prefix": "recipe-app",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
