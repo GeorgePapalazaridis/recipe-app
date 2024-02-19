@@ -3,12 +3,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Input,
-  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { Recipe } from '@recipe-app/dto';
+import { RecipeService } from '@recipe-app/shared';
 
 @Component({
   standalone: true,
@@ -21,12 +20,14 @@ import { Recipe } from '@recipe-app/dto';
 })
 export class RecipeItemComponent {
   @Input() recipe!: Recipe;
-  @Output() recipeSelected = new EventEmitter<void>();
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _recipeService: RecipeService
+  ) {}
 
   onSelected() {
-    this.recipeSelected.emit();
+    this._recipeService.recipeSelected.emit(this.recipe);
     this._cd.detectChanges();
   }
 }
