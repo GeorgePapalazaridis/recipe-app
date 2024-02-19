@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Recipe } from '@recipe-app/dto';
 import { RecipeItemComponent } from './recipe-item/recipe-item.component';
+import { RecipeService } from '@recipe-app/shared';
 
 @Component({
   standalone: true,
@@ -22,24 +23,16 @@ import { RecipeItemComponent } from './recipe-item/recipe-item.component';
 })
 export class RecipeListComponent implements OnInit {
   @Output() recipeWasSelected = new EventEmitter<Recipe>();
+  recipes: Recipe[] = [];
 
-  recipes: Recipe[] = [
-    new Recipe(
-      'A test Recipe',
-      'This is simply a test',
-      'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg'
-    ),
-    new Recipe(
-      'Another test Recipe',
-      'This is simply a test',
-      'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg'
-    ),
-  ];
-
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _recipeService: RecipeService
+  ) {}
 
   ngOnInit() {
     console.log('RecipeListComponent');
+    this.recipes = this._recipeService.getRecipes();
   }
 
   onRecipeSelected(recipe: Recipe) {

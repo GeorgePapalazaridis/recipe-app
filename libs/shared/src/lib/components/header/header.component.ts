@@ -7,10 +7,11 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { DropdownDirective } from '../../directives';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DropdownDirective],
   selector: 'recipe-app-header',
   templateUrl: './header.component..html',
   styleUrl: './header.component..scss',

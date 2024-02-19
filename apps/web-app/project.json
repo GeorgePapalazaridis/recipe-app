@@ -18,7 +18,6 @@
         "assets": ["apps/web-app/src/favicon.ico", "apps/web-app/src/assets"],
         "styles": [
           "node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "node_modules/bootstrap/dist/css/bootstrap.min.css",
           "node_modules/primeng/resources/themes/lara-light-amber/theme.css",
           "node_modules/primeng/resources/primeng.min.css"
         ],
