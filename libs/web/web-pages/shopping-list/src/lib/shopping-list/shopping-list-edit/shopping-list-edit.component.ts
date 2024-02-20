@@ -5,13 +5,12 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
-  Output,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ingredient } from '@recipe-app/dto';
+import { ShoppingListService } from '@recipe-app/shared';
 
 @Component({
   standalone: true,
@@ -26,15 +25,16 @@ export class ShoppingListEditComponent implements AfterViewInit {
   // newIngredientName: string = '';
   // newIngredientAmount: number = 0;
 
-  @Output() ingredientAdded = new EventEmitter<Ingredient>();
-
   @ViewChild('ingredientNameInput')
   ingredientNameInputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('ingredientAmountInput')
   ingredientAmountInputRef!: ElementRef;
   @ViewChild('selectedUnit') selectedUnitRef!: ElementRef<HTMLSelectElement>;
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _shoppingListService: ShoppingListService
+  ) {}
 
   ngAfterViewInit(): void {
     console.log(
@@ -59,7 +59,7 @@ export class ShoppingListEditComponent implements AfterViewInit {
       ingredientAmount,
       ingredientUnit
     );
-    this.ingredientAdded.emit(newIngredient);
+    this._shoppingListService.addNewIngredient(newIngredient);
     this.onClearingIngredients();
     this._cd.detectChanges();
   }

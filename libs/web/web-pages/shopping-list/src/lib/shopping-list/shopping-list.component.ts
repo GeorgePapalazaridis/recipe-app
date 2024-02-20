@@ -2,11 +2,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShoppingListEditComponent } from './shopping-list-edit/shopping-list-edit.component';
 import { Ingredient } from '@recipe-app/dto';
+import { ShoppingListService } from '@recipe-app/shared';
 
 @Component({
   selector: 'recipe-app-shopping-list',
@@ -17,18 +19,22 @@ import { Ingredient } from '@recipe-app/dto';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ShoppingListComponent {
-  ingredients: Ingredient[] = [
-    // new Ingredient('Apples', 5),
-    // new Ingredient('Tomatoes', 10),
-    // new Ingredient('Potatoes', 15),
-    // new Ingredient('Onions', 20),
-  ];
+export class ShoppingListComponent implements OnInit {
+  ingredients: Ingredient[] = [];
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(
+    private _cd: ChangeDetectorRef,
+    private _shoppingListService: ShoppingListService
+  ) {}
 
-  onAddedNewIngredients(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-    this._cd.detectChanges();
+  ngOnInit() {
+    this.ingredients = this._shoppingListService.getIngredients();
+
+    this._shoppingListService.ingredientAdded.subscribe(
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients;
+        this._cd.detectChanges();
+      }
+    );
   }
 }

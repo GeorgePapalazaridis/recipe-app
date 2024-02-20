@@ -20,7 +20,7 @@ import { RecipeService } from '@recipe-app/shared';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecipesComponent implements OnInit{
+export class RecipesComponent implements OnInit {
   recipeSelected!: Recipe;
 
   constructor(
