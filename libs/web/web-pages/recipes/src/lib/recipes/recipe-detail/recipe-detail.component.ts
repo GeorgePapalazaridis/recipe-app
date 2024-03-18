@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Recipe } from '@recipe-app/dto';
-import { DropdownDirective } from '@recipe-app/shared';
+import { DropdownDirective, RecipeService } from '@recipe-app/shared';
 
 @Component({
   standalone: true,
@@ -19,4 +19,10 @@ import { DropdownDirective } from '@recipe-app/shared';
 })
 export class RecipeDetailComponent {
   @Input() recipe!: Recipe;
+
+  constructor(private _recipeService: RecipeService) {}
+
+  onAddToShoppingList() {
+    this._recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
 }
